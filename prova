@@ -1,0 +1,194 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        //if / else
+        int num1 = 20;
+        int num2 = 22;
+
+        if (num1 > num2){
+            System.out.println("Num 1 es mes gran que num 2");
+
+        }
+        else {
+            if (num1 == num2){
+            System.out.println("Num 1 es igual a num 2");
+        }
+            else{
+                System.out.println("Num 2 es mes gran que num 1");
+            }
+        }
+
+        //switch case
+        Scanner escull = new Scanner(System.in);
+        System.out.println("Escull una opcio:");
+        System.out.println("1. Hola");
+        System.out.println("2. Adeu");
+        int opcio = escull.nextInt();
+        switch (opcio){
+            case 1: System.out.println("1. Hola");break;
+            case 2: System.out.println("2. Adeu");break;
+        }
+
+
+        // bucle for (va fent fins que es compleix una condicio)
+            //contador; la accio es repeteix mentre i sigui mes petit de 5; incrementem el valor)
+        for (int i = 1; i <= 5; i++)
+            System.out.println(i + ",");
+
+        // bucle while (mentre x sigui cert, va fent) no sabem exactament quants cops volem que es repeteixi
+        int a = 0;
+        while (a <= 10) {
+
+            System.out.println("Vaig per la volta " + a);
+            a = a + 1;
+
+        //bucle do while (la condicio es mira al final, per tant el codi s'executara al menys 1 vegada, millor usar while)
+            Scanner mentre = new Scanner (System.in);
+            do {
+                System.out.println("Posa un numero ");
+                int numb = mentre.nextInt();
+                if (numb>10)
+                    System.out.println("El numero que has posat es " + numb);
+                else {
+                    System.out.println("El numero no es mes gran de 10 -> " + numb + " Sortint del programa");break;
+                }
+
+            } while (true);
+
+            //arrays assigancio manual
+            int vector[] = {1, 2, 3, 4};
+
+
+            //arrays assigancio de l'user
+            Scanner teclat = new Scanner(System.in);
+            for (int i = 0; i < vector.length; i++) { //(valor; condicio de parada; ++1)
+                System.out.println("Introdueix un numero de loteria" + i);
+                vector[i] = teclat.nextInt();
+
+            }
+
+            for (int i = 0; i < vector.length; i++) {
+                System.out.println("Estic al vector " + i);
+                System.out.println("Tinc el numero " + vector[i]);
+                System.out.println("-------------");
+                //System.out.println("Vector " + vector [0]);
+
+
+                //arrays 2D
+                // tens 3x3 "caixes" 3 files 3 columnes
+                Scanner array = new Scanner(System.in);
+                String[][] cars =  {{"camaro", "corvette", "silvarado"},
+                                    {"Mustang", "Ranger", "Ford"},
+                                    {"Tesla", "Lambo", "Nissan"}};
+
+                array.next();
+                for(int n=0; n<cars.length; n++){
+                    System.out.println();
+                    for (int j=0; j<cars[n].length; j++){
+                        System.out.println(cars[n][j] + " ");
+
+
+                    //arrays 2d assiganacio user (funciona)
+                        // Scanner sc = new Scanner(System.in);
+                        //
+                        //        int[][] array = new int[3][4];
+                        //
+                        //        for (int i = 0; i < array.length; i++) {
+                        //            for (int j = 0; j < array[i].length; j++) {
+                        //                System.out.print("Introduce el valor de la fila " + i + " columna " + j + ": ");
+                        //                String valor = sc.nextLine();
+                        //                array[i][j] = Integer.parseInt(valor);
+                        //            }
+                        //        }
+                        //
+                        //        for (int i = 0; i < array.length; i++) {
+                        //            for (int j = 0; j < array[i].length; j++) {
+                        //                System.out.print(array[i][j] + " ");
+                        //            }
+                        //            System.out.println();
+                        //        }
+                        //    }
+                        //}
+
+                    }
+                }
+
+
+            }
+
+                }
+            }
+        }
+
+/* exercici joc del vaixells
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[][] enemyposition = {
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {1, 0, 0, 1, 1, 0, 0, 0, 1, 0},
+                {1, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {1, 0, 0, 1, 1, 1, 1, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        };
+        boolean joc = true;
+        System.out.println("Benvingut al programa");
+        while (joc) {
+            System.out.println("1. Disparar");
+            System.out.println("2. Mostrar taulell");
+            System.out.println("3. Sortir");
+            int option = scanner.nextInt();
+            switch (option) {
+                case 1:
+                    System.out.println("On vols disparar?");
+                    int x = scanner.nextInt();
+                    int y = scanner.nextInt();
+                    if (enemyposition[x][y] == 0) {
+                        enemyposition[x][y] = -1;
+                        System.out.println("Aigua!");
+                        break;
+                    } else if (enemyposition[x][y] == 1) {
+                        enemyposition[x][y] = -2;
+                        System.out.println("Tocat!");
+                    }
+                    break;
+                case 2:
+                    for (int i = 0; i < enemyposition.length; i++) {
+                        for (int j = 0; j < enemyposition.length; j++) {
+                            System.out.print(enemyposition[i][j] + "\t");
+                        }
+                        System.out.println();
+
+                        if (i < 9) {
+                            for (int k = 0; k < 10; k++) {
+                                System.out.print("----");
+                            }
+                            System.out.println();
+                        }
+                    }
+                    break;
+                case 3:
+                joc = false;
+
+
+            }
+        }
+    }
+}
+
+
+
+
+
+ */
+
